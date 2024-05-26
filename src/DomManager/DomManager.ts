@@ -8,17 +8,25 @@ export class DomManager {
   #initializeTemplate(name: TemplateName, id: string) {
     const template = document.createElement("template");
     template.id = id;
-    template.innerHTML = templates[name].html();
+    template.innerHTML = templates[name]?.html() || "";
     document.body.appendChild(template);
   }
 
   appendEdit(el: HTMLImageElement) {
     el.classList.add("sc-image");
+    el.setAttribute("tabindex", "0");
 
-    el.addEventListener("click", (e) => {
+    const editHandler = (e: Event) => {
       e.preventDefault();
       e.stopPropagation();
       this.#editImageAlt(el);
+    };
+
+    el.addEventListener("click", editHandler);
+    el.addEventListener("keypress", (e) => {
+      if (e.code === "Enter") {
+        editHandler(e);
+      }
     });
   }
 
@@ -26,6 +34,7 @@ export class DomManager {
     const template = document.getElementById(
       "sc_edit_alt_popup",
     ) as HTMLTemplateElement;
+
     const clone = document.importNode(template.content, true);
     document.body.appendChild(clone);
 

@@ -25,8 +25,8 @@ export const templates: Record<string, Template> = {
           <label class="sc-label" for="${input}">Edit Alt Text:</label>
           <input class="sc-input" type="text" id="${input}" />
           <div class="sc-button-group">
-            <button class="sc-button" id="${saveBtn}">Apply</button>
-            <button class="sc-button" id="${closeBtn}">Cancel</button>
+            <button class="sc-button sc-button__primary" id="${saveBtn}" tabindex="0">Apply</button>
+            <button class="sc-button" id="${closeBtn}" tabindex="0">Cancel</button>
           </div>
         </dialog>
       `;

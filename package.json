@@ -8,8 +8,8 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "format": "prettier ./src --write",
-    "dev:wedding": "vite --open playground/wedding/index.html",
-    "dev:health": "vite --open playground/health/index.html"
+    "dev:health": "vite --open playground/health/index.html",
+    "dev:wedding": "vite --open playground/wedding/index.html"
   },
   "devDependencies": {
     "prettier": "^3.2.5",

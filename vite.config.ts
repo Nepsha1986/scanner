@@ -9,6 +9,6 @@ export default defineConfig({
 		},
 	},
 	server: {
-		open: 'playground/wedding/index.html',
+		open: 'playground/health/index.html',
 	},
 });
