@@ -1,17 +1,20 @@
-import { WordGenerationService } from "./WordGenerationService.ts";
+import { WordGenerationService } from "./WordGenerationService/WordGenerationService.ts";
+import { DomManager } from "./DomManager/DomManager.ts";
 
 export class Scanner {
   images: HTMLImageElement[];
+  #domManager: DomManager;
   #wordGenerator: WordGenerationService;
   constructor() {
     this.images = this.#getImages();
+    this.#domManager = new DomManager();
     this.#wordGenerator = new WordGenerationService();
+    this.#appendActions();
     void this.#generateAltTex();
   }
 
   #getImages() {
-    const images = [...document.querySelectorAll<HTMLImageElement>("img")];
-    return images.filter((i) => !i.getAttribute("alt"));
+    return [...document.querySelectorAll<HTMLImageElement>("img")];
   }
 
   async #generateAltTex() {
@@ -24,6 +27,12 @@ export class Scanner {
 
     altText.forEach((item, index) => {
       this.images[index].setAttribute("alt", item);
+    });
+  }
+
+  #appendActions() {
+    this.images.forEach((i) => {
+      this.#domManager.appendEdit(i);
     });
   }
 }
