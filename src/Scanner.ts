@@ -11,6 +11,7 @@ export class Scanner {
     this.#wordGenerator = new WordGenerationService();
     this.#appendActions();
     void this.#generateAltTex();
+    document.addEventListener("DOMNodeInserted", this.#handleNodeInserted);
   }
 
   #getImages() {
@@ -35,4 +36,13 @@ export class Scanner {
       this.#domManager.appendEdit(i);
     });
   }
+
+  // TODO: Cover all cases
+  #handleNodeInserted = (event: Event): void => {
+    const el = event.target as HTMLElement;
+
+    if (el.tagName === "IMG") {
+      this.#domManager.appendEdit(el as HTMLImageElement);
+    }
+  };
 }
