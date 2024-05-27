@@ -6,6 +6,7 @@
   cursor: pointer;
   border: 2px solid var(--sc-c-primary);
   position: relative;
+  max-width: 100%;
   transition: 0.3s;
 }
 
@@ -60,9 +61,6 @@
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
-}
-
-.sc-button {
   background-color: #6c757d;
   color: #fff;
   transition:

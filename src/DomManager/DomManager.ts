@@ -8,7 +8,7 @@ export class DomManager {
   #initializeTemplate(name: TemplateName, id: string) {
     const template = document.createElement("template");
     template.id = id;
-    template.innerHTML = templates[name]?.html() || "";
+    template.innerHTML = templates[name].html();
     document.body.appendChild(template);
   }
 

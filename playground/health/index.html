@@ -241,7 +241,7 @@ http://www.tooplate.com/view/2098-health
      <!-- NEWS -->
      <section id="news" data-stellar-background-ratio="2.5">
           <div class="container">
-               <div class="row">
+               <div class="row" id="news_row">
 
                     <div class="col-md-12 col-sm-12">
                          <!-- SECTION TITLE -->
@@ -314,6 +314,9 @@ http://www.tooplate.com/view/2098-health
                     </div>
 
                </div>
+               <button id="add_image_test">Add wrapped image test</button>
+               <button id="add_images_test">Add several images test</button>
+               <button id="add_image_node_test">Add image node test</button>
           </div>
      </section>
 
@@ -439,7 +442,7 @@ http://www.tooplate.com/view/2098-health
                                    <p>Monday - Friday <span>06:00 AM - 10:00 PM</span></p>
                                    <p>Saturday <span>09:00 AM - 08:00 PM</span></p>
                                    <p>Sunday <span>Closed</span></p>
-                              </div> 
+                              </div>
 
                               <ul class="social-icon">
                                    <li><a href="#" class="fa fa-facebook-square" attr="facebook icon"></a></li>
@@ -485,6 +488,45 @@ http://www.tooplate.com/view/2098-health
      <script src="js/smoothscroll.js"></script>
      <script src="js/owl.carousel.min.js"></script>
      <script src="js/custom.js"></script>
+     <script>
+          (() => {
+               /*
+           * Change alt attribute when images added dynamically
+           */
+               let addImageBtn = document.getElementById('add_image_test');
+               let addImagesBtn = document.getElementById('add_images_test');
+               let addImageNodeBtn = document.getElementById('add_image_node_test');
+
+               let imageContainer = document.getElementById('news_row');
+
+               const addImageNode = (src) => {
+                    const newImage = document.createElement('img');
+                    newImage.src = 'images/news-image1.jpg';
+                    imageContainer.appendChild(newImage);
+               }
+
+               const addImageWrappedWithElement = (src) => {
+                    const imageWrap = document.createElement('div');
+                    imageWrap.className = 'col-md-4';
+                    const newImage = document.createElement('img');
+                    newImage.src = src;
+                    imageWrap.appendChild(newImage);
+                    imageContainer.appendChild(imageWrap);
+               }
+
+               const addImageElements = () => {
+                    const images = ['images/news-image1.jpg', 'images/news-image2.jpg', 'images/news-image3.jpg'];
+                    images.forEach(i => addImageWrappedWithElement(i));
+               }
+
+               addImageBtn.addEventListener('click', () => {
+                    addImageWrappedWithElement('images/news-image1.jpg');
+               })
+
+               addImagesBtn.addEventListener('click', addImageElements)
+               addImageNodeBtn.addEventListener('click', addImageNode)
+          })()
+     </script>
      <script type="module" src="/src/main.ts"></script>
 </body>
 </html>

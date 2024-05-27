@@ -1,48 +1,58 @@
 import { WordGenerationService } from "./WordGenerationService/WordGenerationService.ts";
 import { DomManager } from "./DomManager/DomManager.ts";
 
+import "./style.css";
+
 export class Scanner {
-  images: HTMLImageElement[];
   #domManager: DomManager;
   #wordGenerator: WordGenerationService;
   constructor() {
-    this.images = this.#getImages();
     this.#domManager = new DomManager();
     this.#wordGenerator = new WordGenerationService();
-    this.#appendActions();
-    void this.#generateAltTex();
     document.addEventListener("DOMNodeInserted", this.#handleNodeInserted);
+    this.#init();
   }
 
-  #getImages() {
-    return [...document.querySelectorAll<HTMLImageElement>("img")];
+  #init() {
+    const images: HTMLImageElement[] = [
+      ...document.querySelectorAll<HTMLImageElement>("img"),
+    ];
+    this.#appendActions(images);
+    void this.#changeAltText(images);
   }
 
-  async #generateAltTex() {
+  async #changeAltText(images: HTMLImageElement[]) {
     let altText = [];
     try {
-      altText = await this.#wordGenerator.getWords(this.images.length);
+      altText = await this.#wordGenerator.getWords(images.length);
     } catch (e) {
       throw new Error("Can not generate alt text");
     }
 
     altText.forEach((item, index) => {
-      this.images[index].setAttribute("alt", item);
+      images[index].setAttribute("alt", item);
     });
   }
 
-  #appendActions() {
-    this.images.forEach((i) => {
+  #appendActions(images: HTMLImageElement[]) {
+    images.forEach((i) => {
       this.#domManager.appendEdit(i);
     });
   }
 
-  // TODO: Cover all cases
-  #handleNodeInserted = (event: Event): void => {
+  #handleNodeInserted = async (event: Event): Promise<void> => {
     const el = event.target as HTMLElement;
+    const newImages =
+      el.tagName === "IMG"
+        ? ([el] as HTMLImageElement[])
+        : [...el.querySelectorAll<HTMLImageElement>("img")];
 
-    if (el.tagName === "IMG") {
-      this.#domManager.appendEdit(el as HTMLImageElement);
+    this.#appendActions(newImages);
+
+    try {
+      await this.#changeAltText(newImages);
+    } catch (e) {
+      throw new Error("Can not change alt text");
     }
   };
 }

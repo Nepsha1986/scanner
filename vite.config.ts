@@ -3,9 +3,9 @@ import { defineConfig } from 'vite';
 export default defineConfig({
 	build: {
 		lib: {
-			entry: 'src/main.ts',
-			name: 'scanner',
-			fileName: (format) => `scanner.${format}.js`
+			entry: 'src/Scanner.ts',
+			name: 'Scanner',
+			fileName: (format) => `scanner.${format}.js`,
 		},
 	},
 	server: {
