@@ -57,5 +57,5 @@ It has been noticed that sometimes the API endpoint for receiving random text br
 Currently, the constructor of the main class does not receive any configuration. In a production-ready library, this feature should be implemented to allow control and customization of Scanner behavior.
 
 
-***Please check that [https://random-word-api.herokuapp.com/word](https://random-word-api.herokuapp.com/word?nnumber=2) works before checking Scanner functionality***
+***Please check that [https://random-word-api.herokuapp.com/word](https://random-word-api.herokuapp.com/word?number=2) works before checking Scanner functionality***
 ***Please write me directly to [nepsha1986@gmail.com](mailto:nepsha1986@gmail.com) if you have any questions.***
