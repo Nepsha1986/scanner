@@ -3,7 +3,7 @@ import { defineConfig } from 'vite';
 export default defineConfig({
 	build: {
 		lib: {
-			entry: 'src/main.ts',
+			entry: 'src/Scanner.ts',
 			name: 'Scanner',
 			fileName: (format) => `scanner.${format}.js`,
 			formats: ['umd']
