@@ -27,11 +27,28 @@ Currently, two web pages are available for development/testing:
 
 ## Build
 
-Running ``npm run build`` will create a build version of the Scanner in the ``dist`` folder.
+Running ``npm run build`` will create a build version of the Scanner in the ``dist`` folder. 
 
-To add it to your website, you can copy ``scanner.umd.js`` to your project. You will also need to grab ``styles.css`` from ``dist``.
+To add it to your website, you can copy ``scanner.umd.js`` to your project. You will also need to grab ``scanner.css`` from ``dist``.
 
 To initialize Scanner, add ```<script>new Scanner()<script>``` after scripts and styles are included.
+
+```html
+<html>
+    <head>
+        ...
+        <link href="./css/scanner.css" rel="stylesheet">
+    </head>
+
+    <body>
+        ...
+        <script src="js/scanner.umd.js"></script>
+        <script>
+          new Scanner()
+        </script>
+    </body>
+</html>
+```
 
 
 Please write me directly to [nepsha1986@gmail.com](mailto:nepsha1986@gmail.com) if you have any questions.
