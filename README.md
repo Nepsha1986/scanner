@@ -50,5 +50,12 @@ To initialize Scanner, add ```<script>new Scanner()<script>``` after scripts and
 </html>
 ```
 
+## Known Issues
 
-Please write me directly to [nepsha1986@gmail.com](mailto:nepsha1986@gmail.com) if you have any questions.
+If a third-party application dynamically inserts a node with 'n' images, we will make 'n' API calls. This issue will be addressed in future versions. We assume that such cases will not occur for now, and improvements can be made later.
+It has been noticed that sometimes the API endpoint for receiving random text breaks and does not work. Currently, we do not fill the 'alt' attributes and leave them blank or as they were. There are no error indicators for users; messages are shown in the browser console instead.
+Currently, the constructor of the main class does not receive any configuration. In a production-ready library, this feature should be implemented to allow control and customization of Scanner behavior.
+
+
+***Please check that [https://random-word-api.herokuapp.com/word](https://random-word-api.herokuapp.com/word?nnumber=2) works before checking Scanner functionality***
+***Please write me directly to [nepsha1986@gmail.com](mailto:nepsha1986@gmail.com) if you have any questions.***
